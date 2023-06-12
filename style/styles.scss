@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&family=Syne:wght@400;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  background-color: rgb(247, 243, 226);
+}
+
+main {
+  margin: 5vw 0;
+}
+h1,
+h2 {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  border: none;
+  background: none;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  .icon {
+    width: 20px;
+  }
+}
+
+.container {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container__selected {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw;
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: black;
+    height: 0.15vw;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
+}
+
+.container__works {
+  display: flex;
+  flex-direction: column;
+
+  .work {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 20vw;
+
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.86, 0.01, 0.59, 0.99);
+    &.active {
+      height: 30vw;
+
+      &::after {
+        opacity: 1;
+      }
+      span,
+      h2,
+      .infos,
+      .content .title span {
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.5s cubic-bezier(0.86, 0.01, 0.59, 0.99);
+        transition-delay: 0.3s;
+      }
+      .content .title span {
+        border-bottom: 0.15vw solid rgba(255, 255, 255, 0.9);
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      background: black;
+      height: 0.15vw;
+      bottom: 0;
+      z-index: 3;
+    }
+    &::after {
+      opacity: 0;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.8) 10%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      z-index: 3;
+      transition: all 0.5s cubic-bezier(0.86, 0.01, 0.59, 0.99);
+      transition-delay: 0.3s;
+    }
+
+    .image {
+      width: 100%;
+      position: absolute;
+      right: 0;
+      z-index: 0;
+      overflow: hidden;
+
+      img {
+        position: relative;
+        width: 100%;
+        object-fit: cover;
+        transition: all 0.5s cubic-bezier(0.86, 0.01, 0.59, 0.99);
+        transition-delay: 0.3s;
+        opacity: 0;
+      }
+      &.active img {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .content {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10vw;
+      padding: 0 2vw;
+      z-index: 10;
+      .title {
+        width: 80%;
+        display: flex;
+        gap: 1vw;
+
+        span {
+          height: 25px;
+          display: block;
+          margin-top: 2vw;
+          border-bottom: 0.15vw solid black;
+        }
+        h2 {
+          font-size: 7vw;
+          mix-blend-mode: multiply;
+        }
+      }
+      .infos {
+        text-transform: uppercase;
+        text-align: end;
+        align-self: self-end;
+        font-size: 0.7vw;
+        margin-bottom: 2vw;
+        font-weight: 300;
+        span {
+          font-size: 1vw;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
